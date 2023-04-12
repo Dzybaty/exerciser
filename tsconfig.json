@@ -28,7 +28,6 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "tailwind.config.js"
   ],
   "exclude": [
     "node_modules"

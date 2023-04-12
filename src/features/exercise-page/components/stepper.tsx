@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SwipeableViews from 'react-swipeable-views';
 import MobileStepper from '@mui/material/MobileStepper';
-import ExercisePage from '../expercise-page';
+import ExercisePage from './expercise';
 
 import type { ExerciseT } from '../../../types';
 

@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import StartScreen from './features/exercise-page/components/start-screen';
-import HorizontalStepper from './features/exercise-page/components/stepper';
-import Timer from './features/exercise-page/components/timer';
-import ExitButton from './features/exercise-page/components/exit-button';
+import StartScreen from './features/start-screen/start-screen';
+import ExercisePage from './features/exercise-page/exercise-page';
+import Loader from './features/start-screen/components/loader';
+import ErrorPage from './features/error-page/error-page';
 
-import exercises from './data/exercises.json';
+import useGetExercises from './features/start-screen/hooks/get-exercises-data';
 
 function App() {
-  const [started, setStarted] = useState(false);
+  const [exerciseUrl, setExreciseUrl] = useState<string>();
 
-  if (!started) {
-    return <StartScreen handleStart={() => setStarted(true)} />;
+  const { data, loading, error } = useGetExercises(exerciseUrl);
+
+  const handleFinishButton = () => {
+    setExreciseUrl('');
+  };
+
+  if (error) {
+    return <ErrorPage error={error} />;
+  }
+
+  if (data) {
+    return <ExercisePage exercises={data} onFinish={handleFinishButton} />;
   }
 
   return (
-    <Box>
-      <Timer />
-      <HorizontalStepper exercises={exercises} />
-      <ExitButton onClick={() => setStarted(false)} />
-    </Box>
+    <>
+      <StartScreen setExreciseUrl={setExreciseUrl} />
+      <Loader show={loading} />
+    </>
   );
 }
 
