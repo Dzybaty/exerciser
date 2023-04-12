@@ -4,13 +4,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
+import { getLastStoredURL, setLastStoredURL } from './utils';
+
 type StartScreenPropsT = {
   setExreciseUrl: (url: string) => void;
 };
 
 function StartScreen({ setExreciseUrl }: StartScreenPropsT) {
   const [validationError, setValidationError] = useState('');
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(getLastStoredURL());
 
   const validateUrl = (value: string) => {
     return /https:\/\/api.npoint.io\/(\d\w+)/.test(value);
@@ -27,6 +29,7 @@ function StartScreen({ setExreciseUrl }: StartScreenPropsT) {
       return;
     }
 
+    setLastStoredURL(url);
     setExreciseUrl(url);
   };
 
@@ -41,10 +44,12 @@ function StartScreen({ setExreciseUrl }: StartScreenPropsT) {
         justifyContent: 'center',
       }}
     >
-      <Typography variant="h5" sx={{ textAlign: 'center' }}>
+      <Typography variant="h5" sx={{ textAlign: 'center', mb: 2 }}>
         Добро пожаловать! Приступим?
       </Typography>
       <TextField
+        sx={{ minWidth: '18%' }}
+        value={url}
         error={!!validationError}
         helperText={validationError || ''}
         label="Ссылка на тренировку"
