@@ -12,7 +12,7 @@ const modalStyle = {
   left: '50%',
   textAlign: 'justify',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: { xs: '90%', md: '600px' },
   p: 2,
 };
 
@@ -30,7 +30,7 @@ export default function GuideModal({ open, handleClose }: GuideModalPropsT) {
         </Typography>
         <Typography sx={{ mt: 2 }}>
           Прежде, чем использовать приложение, нужно создать или получить ссылку на тренировку. Если
-          у вас уже есть ссылка, просто вставтьте ее и нажмите кнопку &quot;Начать&quot;.
+          у вас уже есть ссылка, просто вставьте ее и нажмите кнопку &quot;Начать&quot;.
         </Typography>
         <Typography sx={{ mt: 2 }}>
           Для того, чтобы создать новую тренировку, перейдите на{' '}

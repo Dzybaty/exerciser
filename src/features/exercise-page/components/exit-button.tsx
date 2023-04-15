@@ -16,7 +16,7 @@ function ExitButton({ onClick }: ExitButtonPropsT) {
       }}
     >
       <Button size="small" onClick={onClick} sx={{ mt: 2, mb: 2 }}>
-        Вернуться на начальный экран
+        Закончить тренировку
       </Button>
     </Box>
   );
