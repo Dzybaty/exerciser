@@ -34,9 +34,14 @@ export default function GuideModal({ open, handleClose }: GuideModalPropsT) {
         </Typography>
         <Typography sx={{ mt: 2 }}>
           Для того, чтобы создать новую тренировку, перейдите на{' '}
-          <a href="https://www.npoint.io/">npoint.io</a> и создайте документ. В качестве примера,
-          можно использовать{' '}
-          <a href="https://www.npoint.io/docs/71270dea1f3e6b8c0b48">данную тренировку</a>.
+          <a href="https://www.npoint.io/" target="blank">
+            npoint.io
+          </a>{' '}
+          и создайте документ. В качестве примера, можно использовать{' '}
+          <a href="https://www.npoint.io/docs/71270dea1f3e6b8c0b48" target="blank">
+            данную тренировку
+          </a>
+          .
         </Typography>
         <Typography sx={{ mt: 2 }}>
           После создания тренировки, вставьте ссылку на нее в поле на начальном экране. Последняя
