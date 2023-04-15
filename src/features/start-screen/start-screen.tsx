@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
+import Guide from '../guide/guide';
+
 import { getLastStoredURL, setLastStoredURL } from './utils';
 
 type StartScreenPropsT = {
@@ -59,6 +61,7 @@ function StartScreen({ setExreciseUrl }: StartScreenPropsT) {
       <Button variant="contained" size="large" onClick={handleSubmit} sx={{ mt: 2 }}>
         Начать
       </Button>
+      <Guide />
     </Box>
   );
 }
