@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SwipeableViews from 'react-swipeable-views';
@@ -17,9 +17,11 @@ export default function HorizontalStepper({ exercises }: HorizontalStepperPropsT
   const stepperVariant = steps.length <= 14 ? 'dots' : 'text';
   const [activeStep, setActiveStep] = useState(0);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  const handleNext = useCallback(() => {
+    if (activeStep < stepsCount - 1) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+  }, [activeStep, stepsCount]);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -28,6 +30,21 @@ export default function HorizontalStepper({ exercises }: HorizontalStepperPropsT
   const handleStepChange = (step: number) => {
     setActiveStep(step);
   };
+
+  useEffect(() => {
+    const handleNextWithKeyboard = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleNextWithKeyboard);
+
+    return () => {
+      window.removeEventListener('keydown', handleNextWithKeyboard);
+    };
+  }, [handleNext]);
 
   return (
     <Box sx={{ width: '100%', flexGrow: 1 }}>
